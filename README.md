@@ -4,7 +4,7 @@ A responsive slider for Webflow that works on mobile and desktop. Powered by [Sw
 
 ## How to use
 
-Add the following code before the `<body>` section of your Webflow project:
+Add the following code before the `</body>` section of your Webflow project (2. custom code section in settings):
 
 ```html
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/araskavakli/webflow-slider/dist/webflow-slider.min.css"/>
