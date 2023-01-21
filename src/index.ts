@@ -10,7 +10,7 @@ const swiperContainers = [...document.querySelectorAll('.swiper-container')];
 const swipers = new Map();
 const colors = ['#22c55e', '#eab308', '#ec4899'];
 
-hideControls();
+swiperContainers.forEach((el) => hideControls(el));
 swiperInit();
 
 function swiperInit() {
@@ -19,7 +19,7 @@ function swiperInit() {
     const debugMode = parseBoolean(el.getAttribute('debug-mode') || 'false');
     let swiperIsOn = swipers.get(idx)?.enabled || false;
     if (window.innerWidth < disableSwiperAboveThis && !swiperIsOn) {
-      showControls();
+      showControls(el);
       swiperIsOn = true;
       const swpEnabled = parseBoolean(el.getAttribute('swp-enabled') || 'false');
       const swpMEnabled = parseBoolean(el.getAttribute('swp-m-enabled') || 'true');
@@ -95,7 +95,7 @@ function swiperInit() {
           `background: #222; color: ${colors[idx] || colors[idx % colors.length]}`
         );
     } else if (swiperIsOn && window.innerWidth > disableSwiperAboveThis) {
-      hideControls();
+      hideControls(el);
       const swiper = swipers.get(idx);
       swiper.destroy(true, true);
       [...el.querySelectorAll('.swiper-slide')].forEach((slide) => {
@@ -136,34 +136,32 @@ function debounce(func: any) {
   };
 }
 
-function hidePagination() {
-  document.querySelector('.custom-pagination-wrapper')?.classList.add('custom-pagination-hidden');
+function hidePagination(el: Element) {
+  el.querySelector('.custom-pagination-wrapper')?.classList.add('custom-pagination-hidden');
 }
 
-function showPagination() {
-  document
-    .querySelector('.custom-pagination-wrapper')
-    ?.classList.remove('custom-pagination-hidden');
+function showPagination(el: Element) {
+  el.querySelector('.custom-pagination-wrapper')?.classList.remove('custom-pagination-hidden');
 }
 
-function hideNavigation() {
-  document.querySelector('.custom-navigation-prev')?.classList.add('custom-pagination-hidden');
-  document.querySelector('.custom-navigation-next')?.classList.add('custom-pagination-hidden');
+function hideNavigation(el: Element) {
+  el.querySelector('.custom-navigation-prev')?.classList.add('custom-pagination-hidden');
+  el.querySelector('.custom-navigation-next')?.classList.add('custom-pagination-hidden');
 }
 
-function showNavigation() {
-  document.querySelector('.custom-navigation-prev')?.classList.remove('custom-pagination-hidden');
-  document.querySelector('.custom-navigation-next')?.classList.remove('custom-pagination-hidden');
+function showNavigation(el: Element) {
+  el.querySelector('.custom-navigation-prev')?.classList.remove('custom-pagination-hidden');
+  el.querySelector('.custom-navigation-next')?.classList.remove('custom-pagination-hidden');
 }
 
-function hideControls() {
-  hidePagination();
-  hideNavigation();
+function hideControls(el: Element) {
+  hidePagination(el);
+  hideNavigation(el);
 }
 
-function showControls() {
-  showPagination();
-  showNavigation();
+function showControls(el: Element) {
+  showPagination(el);
+  showNavigation(el);
 }
 
 const style = document.createElement('style');
