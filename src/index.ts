@@ -6,7 +6,6 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
-const breakpoints = [240, 797, 991];
 const swiperContainers = [...document.querySelectorAll('.swiper-container')];
 const swipers = new Map();
 const colors = ['#22c55e', '#eab308', '#ec4899'];
@@ -142,7 +141,9 @@ function hidePagination() {
 }
 
 function showPagination() {
-  document.querySelector('.custom-pagination-wrapper')?.classList.remove('custom-pagination-hidden');
+  document
+    .querySelector('.custom-pagination-wrapper')
+    ?.classList.remove('custom-pagination-hidden');
 }
 
 function hideNavigation() {
